@@ -52,7 +52,7 @@ for i = 2:rawDataSize
             currentWindowVar = var(currentWindowAccMagnitude);
             
             
-            % ---- FEATURE 2: Peak Frequency ----
+            % ---- FEATURE 2: Peak Power Frequency ----
             currentWindowFs = N/(double(timeStamp(i) - timeStamp(firstRawDataInCurrentWindow))/1000);
               
             currentWindowFFT      = fft(currentWindowAccMagnitude)/N;
@@ -105,6 +105,10 @@ for i = 2:rawDataSize
             currentWindowRD = sum(currentWindowPwr(peakLeftBoundary:peakRightBoundary));
             
             
+            % ---- FEATURE 6: Window Energy
+            currentWindowEnergy = sum(currentWindowPwr);
+            
+            
             % Groundtruth Label
             numberLabel           = zeros(1,5);
             for j = 1:length(currentWindowGroundTruth)
@@ -129,6 +133,7 @@ for i = 2:rawDataSize
             fprintf(fidWrite, '%3.5f,', currentWindowCL      );
             fprintf(fidWrite, '%3.5f,', currentWindowANE     );
             fprintf(fidWrite, '%3.5f,', currentWindowRD      );
+            fprintf(fidWrite, '%3.5f,', currentWindowEnergy  );
             fprintf(fidWrite, '%d'    , currentWindowlabel   );
             fprintf(fidWrite, '\n');
             

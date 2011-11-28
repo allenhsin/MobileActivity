@@ -2,22 +2,20 @@
 close all; clear all; clc;
 
 %% parameter
-readFeatureDataFileName = 'features';
-
-TWL             = 5; % sec
-NUM_OF_ACTIVITY = 5;
+readFeatureDataFileName = 'normFeatures';
 
 %% read raw data from file
 
 fidRead = fopen(readFeatureDataFileName, 'r');
 
-data = textscan(fidRead, '%f %f %f %f %f %d', 'delimiter', ',');
+data = textscan(fidRead, '%f %f %f %f %f %f %d', 'delimiter', ',');
 var         = data{1};
 peakFreq    = data{2};
 CL          = data{3};
 ANE         = data{4};
 RD          = data{5};
-GroundTruth = data{6};
+Energy      = data{6};
+GroundTruth = data{7};
 
 fclose(fidRead);
 
@@ -25,6 +23,7 @@ fclose(fidRead);
 
 figure(1);
 hold on;
+grid on;
 for i = 1:length(GroundTruth)
     if      GroundTruth(i) == 0
         plot(CL(i), RD(i), '.r');
@@ -43,6 +42,26 @@ ylabel('Rhythmic Discharge');
 
 figure(2);
 hold on;
+grid on;
+for i = 1:length(GroundTruth)
+    if      GroundTruth(i) == 0
+        plot(ANE(i), Energy(i), '.r');
+    elseif  GroundTruth(i) == 1
+        plot(ANE(i), Energy(i), '.b');
+    elseif  GroundTruth(i) == 2
+        plot(ANE(i), Energy(i), '.g');
+    elseif  GroundTruth(i) == 3
+        plot(ANE(i), Energy(i), '.k');
+    elseif  GroundTruth(i) == 4
+        plot(ANE(i), Energy(i), '.m');
+    end
+end
+xlabel('Non-linear Energy');
+ylabel('Total Energy');
+
+figure(3);
+hold on;
+grid on;
 for i = 1:length(GroundTruth)
     if      GroundTruth(i) == 0
         plot(var(i), peakFreq(i), '.r');
