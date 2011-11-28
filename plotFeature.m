@@ -8,14 +8,15 @@ readFeatureDataFileName = 'normFeatures';
 
 fidRead = fopen(readFeatureDataFileName, 'r');
 
-data = textscan(fidRead, '%f %f %f %f %f %f %d', 'delimiter', ',');
+data = textscan(fidRead, '%f %f %f %f %f %f %f %d', 'delimiter', ',');
 var         = data{1};
 peakFreq    = data{2};
 CL          = data{3};
 ANE         = data{4};
 RD          = data{5};
 Energy      = data{6};
-GroundTruth = data{7};
+SV          = data{7};
+GroundTruth = data{8};
 
 fclose(fidRead);
 
@@ -26,15 +27,15 @@ hold on;
 grid on;
 for i = 1:length(GroundTruth)
     if      GroundTruth(i) == 0
-        plot(CL(i), RD(i), '.r');
+        plot(CL(i), RD(i), 'xr');
     elseif  GroundTruth(i) == 1
-        plot(CL(i), RD(i), '.b');
+        plot(CL(i), RD(i), '+b');
     elseif  GroundTruth(i) == 2
         plot(CL(i), RD(i), '.g');
     elseif  GroundTruth(i) == 3
-        plot(CL(i), RD(i), '.k');
+        plot(CL(i), RD(i), '.c');
     elseif  GroundTruth(i) == 4
-        plot(CL(i), RD(i), '.m');
+        plot(CL(i), RD(i), '.k');
     end
 end
 xlabel('Curve Length');
@@ -45,15 +46,15 @@ hold on;
 grid on;
 for i = 1:length(GroundTruth)
     if      GroundTruth(i) == 0
-        plot(ANE(i), Energy(i), '.r');
+        plot(ANE(i), Energy(i), 'xr');
     elseif  GroundTruth(i) == 1
-        plot(ANE(i), Energy(i), '.b');
+        plot(ANE(i), Energy(i), '+b');
     elseif  GroundTruth(i) == 2
         plot(ANE(i), Energy(i), '.g');
     elseif  GroundTruth(i) == 3
-        plot(ANE(i), Energy(i), '.k');
+        plot(ANE(i), Energy(i), '.c');
     elseif  GroundTruth(i) == 4
-        plot(ANE(i), Energy(i), '.m');
+        plot(ANE(i), Energy(i), '.k');
     end
 end
 xlabel('Non-linear Energy');
@@ -64,15 +65,35 @@ hold on;
 grid on;
 for i = 1:length(GroundTruth)
     if      GroundTruth(i) == 0
-        plot(var(i), peakFreq(i), '.r');
+        plot(SV(i), RD(i), 'xr');
     elseif  GroundTruth(i) == 1
-        plot(var(i), peakFreq(i), '.b');
+        plot(SV(i), RD(i), '+b');
+    elseif  GroundTruth(i) == 2
+        plot(SV(i), RD(i), '.g');
+    elseif  GroundTruth(i) == 3
+        plot(SV(i), RD(i), '.c');
+    elseif  GroundTruth(i) == 4
+        plot(SV(i), RD(i), '.k');
+    end
+end
+xlabel('Strength Variation');
+ylabel('Rhythmic Discharge');
+
+
+figure(4);
+hold on;
+grid on;
+for i = 1:length(GroundTruth)
+    if      GroundTruth(i) == 0
+        plot(var(i), peakFreq(i), 'xr');
+    elseif  GroundTruth(i) == 1
+        plot(var(i), peakFreq(i), '+b');
     elseif  GroundTruth(i) == 2
         plot(var(i), peakFreq(i), '.g');
     elseif  GroundTruth(i) == 3
-        plot(var(i), peakFreq(i), '.k');
+        plot(var(i), peakFreq(i), '.c');
     elseif  GroundTruth(i) == 4
-        plot(var(i), peakFreq(i), '.m');
+        plot(var(i), peakFreq(i), '.k');
     end
 end
 xlabel('Variance');

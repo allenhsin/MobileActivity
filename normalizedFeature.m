@@ -9,14 +9,15 @@ writeNormalizedFeatureDataFileName = 'normFeatures';
 
 fidRead = fopen(readFeatureDataFileName, 'r');
 
-data = textscan(fidRead, '%f %f %f %f %f %f %d', 'delimiter', ',');
+data = textscan(fidRead, '%f %f %f %f %f %f %f %d', 'delimiter', ',');
 var         = data{1};
 peakFreq    = data{2};
 CL          = data{3};
 ANE         = data{4};
 RD          = data{5};
 Energy      = data{6};
-GroundTruth = data{7};
+SV          = data{7};
+GroundTruth = data{8};
 
 fclose(fidRead);
 
@@ -33,6 +34,7 @@ CL       = CL/max(abs(CL));
 ANE      = ANE/max(abs(ANE));
 RD       = RD/max(abs(RD));
 Energy   = Energy/max(abs(Energy));
+SV       = SV/max(abs(SV));
 
 %% write to file
 
@@ -44,6 +46,7 @@ for i = 1:length(GroundTruth)
     fprintf(fidWrite, '%3.5f,', ANE(i)        );
     fprintf(fidWrite, '%3.5f,', RD(i)         );
     fprintf(fidWrite, '%3.5f,', Energy(i)     );
+    fprintf(fidWrite, '%3.5f,', SV(i)         );
     fprintf(fidWrite, '%d'    , GroundTruth(i));
     fprintf(fidWrite, '\n');
     

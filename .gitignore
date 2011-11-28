@@ -6,3 +6,7 @@ normFeatures
 features
 parsedRawData
 rawData
+*.log
+*.o
+*.so
+*.m~

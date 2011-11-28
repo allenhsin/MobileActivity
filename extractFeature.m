@@ -104,6 +104,21 @@ for i = 2:rawDataSize
             currentWindowEnergy = sum(currentWindowPwr);
             
             
+            % ---- FEATURE 7: Strength Variation ----
+            summit = 0;
+            valley = 0;
+            
+            for j = 2:N-1
+                if     currentWindowAccMagnitude(j)>currentWindowAccMagnitude(j-1) && currentWindowAccMagnitude(j)>currentWindowAccMagnitude(j+1)
+                    summit = [summit currentWindowAccMagnitude(j)];
+                elseif currentWindowAccMagnitude(j)<currentWindowAccMagnitude(j-1) && currentWindowAccMagnitude(j)<currentWindowAccMagnitude(j+1)
+                    valley = [valley currentWindowAccMagnitude(j)];
+                end
+            end
+            
+            currentWindowSV = var(summit(2:end)) + var(valley(2:end));
+            
+            
             % Groundtruth Label
             numberLabel           = zeros(1,5);
             for j = 1:length(currentWindowGroundTruth)
@@ -129,6 +144,7 @@ for i = 2:rawDataSize
             fprintf(fidWrite, '%3.5f,', currentWindowANE     );
             fprintf(fidWrite, '%3.5f,', currentWindowRD      );
             fprintf(fidWrite, '%3.5f,', currentWindowEnergy  );
+            fprintf(fidWrite, '%3.5f,', currentWindowSV      );
             fprintf(fidWrite, '%d'    , currentWindowlabel   );
             fprintf(fidWrite, '\n');
             
