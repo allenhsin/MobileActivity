@@ -26,7 +26,7 @@ figure(1);
 hold on;
 for i = 1:length(GroundTruth)
     if      GroundTruth(i) == 0
-        plot(CL(i), ANE(i), '.r');
+        %plot(CL(i), ANE(i), '.r');
     elseif  GroundTruth(i) == 1
         %plot(CL(i), ANE(i), '.b');
     elseif  GroundTruth(i) == 2
