@@ -53,27 +53,22 @@ for i = 2:rawDataSize
             
             
             % ---- FEATURE 2: Peak Power Frequency ----
-            currentWindowFs = N/(double(timeStamp(i) - timeStamp(firstRawDataInCurrentWindow))/1000);
-              
+            currentWindowFs       = N/(double(timeStamp(i) - timeStamp(firstRawDataInCurrentWindow))/1000);
             currentWindowFFT      = fft(currentWindowAccMagnitude)/N;
             currentWindowPwr      = 2*abs(currentWindowFFT(1:floor(N/2)+1));
             peakPwrLocation       = find( currentWindowPwr == max(currentWindowPwr(2:end)) );
             currentWindowPeakFreq = (peakPwrLocation/N)*currentWindowFs;
-              %NFFT                  = 2^nextpow2(N);
-              %currentWindowFFT      = fft(currentWindowAccMagnitude, NFFT)/N;
-              %currentWindowPwr      = 2*abs(currentWindowFFT(1:NFFT/2+1));
-              %currentWindowPeakFreq = (peakPwrLocation/NFFT)*currentWindowFs;
             
             
             % ---- FEATURE 3: Curve Length ----
             currentWindowCL = sum(abs(currentWindowAccMagnitude(2:end) - currentWindowAccMagnitude(1:end-1)));
             
             
-            % ---- FEATURE 4: Non-linear Energy
+            % ---- FEATURE 4: Non-linear Energy ----
             currentWindowANE = sum(currentWindowAccMagnitude(2:end-1).^2 - currentWindowAccMagnitude(1:end-2).*currentWindowAccMagnitude(3:end))/N;
             
             
-            % ---- FEATURE 5: Rhythmic Discharge
+            % ---- FEATURE 5: Rhythmic Discharge ----
             if peakPwrLocation > 2
                 peakLeftBoundary = peakPwrLocation - 1;
                 while peakLeftBoundary > 2
@@ -105,7 +100,7 @@ for i = 2:rawDataSize
             currentWindowRD = sum(currentWindowPwr(peakLeftBoundary:peakRightBoundary));
             
             
-            % ---- FEATURE 6: Window Energy
+            % ---- FEATURE 6: Window Energy ----
             currentWindowEnergy = sum(currentWindowPwr);
             
             
@@ -149,10 +144,9 @@ end
 %% plot
 
 figure(1);
-
-plot(1:length(AccMagnitude),AccMagnitude);
 hold on;
-plot(1:length(GroundTruth), GroundTruth);
+plot(1:length(AccMagnitude),AccMagnitude,'b');
+plot(1:length(GroundTruth), GroundTruth,'r');
 
 
 %% close writing feature file

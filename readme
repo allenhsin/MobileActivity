@@ -18,16 +18,20 @@ label 給的方式是用voting 該timewindow中最多的activity做為該label
 嘗試新Feature的MTATLAB檔
 
 
-4. python separator.py
+5. normalizedFeature.m
+把各feature都normalize成最大值1
+
+
+6. python separator.py
 ## 要修正裡面兩個變數的值 1. NUM_OF_FEATURES 2.INPUT_FILE_NAME
 將feature檔 依照groundtruth分成五個類
 class0 -> 都是stationary的feature
 以此類推
 
 
-5. python sepTrainTest.py
+7. python sepTrainTest.py
 將feature分成train和test兩份
 
 
-6. java calMeanWithAllData
+8. java calMeanWithAllData
 算各個cluster的mean
