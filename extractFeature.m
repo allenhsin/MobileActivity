@@ -72,7 +72,39 @@ for i = 2:rawDataSize
             % ---- FEATURE 4: Non-linear Energy
             currentWindowANE = sum(currentWindowAccMagnitude(2:end-1).^2 - currentWindowAccMagnitude(1:end-2).*currentWindowAccMagnitude(3:end))/N;
             
-              
+            
+            % ---- FEATURE 5: Rhythmic Discharge
+            if peakPwrLocation > 2
+                peakLeftBoundary = peakPwrLocation - 1;
+                while peakLeftBoundary > 2
+                    if currentWindowPwr(peakLeftBoundary) >= currentWindowPwr(peakPwrLocation)/2
+                        peakLeftBoundary = peakLeftBoundary - 1;
+                    else
+                        peakLeftBoundary = peakLeftBoundary + 1;
+                        break;
+                    end
+                end
+            else
+                peakLeftBoundary = 2;
+            end
+            
+            if peakPwrLocation < length(currentWindowPwr)
+                peakRightBoundary = peakPwrLocation + 1;
+                while peakRightBoundary < length(currentWindowPwr)
+                    if currentWindowPwr(peakRightBoundary) >= currentWindowPwr(peakPwrLocation)/2
+                        peakRightBoundary = peakRightBoundary + 1;
+                    else
+                        peakRightBoundary = peakRightBoundary - 1;
+                        break;
+                    end
+                end
+            else
+                peakRightBoundary = length(currentWindowPwr);
+            end
+            
+            currentWindowRD = sum(currentWindowPwr(peakLeftBoundary:peakRightBoundary));
+            
+            
             % Groundtruth Label
             numberLabel           = zeros(1,5);
             for j = 1:length(currentWindowGroundTruth)
@@ -96,6 +128,7 @@ for i = 2:rawDataSize
             fprintf(fidWrite, '%3.5f,', currentWindowPeakFreq);
             fprintf(fidWrite, '%3.5f,', currentWindowCL      );
             fprintf(fidWrite, '%3.5f,', currentWindowANE     );
+            fprintf(fidWrite, '%3.5f,', currentWindowRD      );
             fprintf(fidWrite, '%d'    , currentWindowlabel   );
             fprintf(fidWrite, '\n');
             
@@ -109,6 +142,12 @@ for i = 2:rawDataSize
 end
 
 %% plot
+
+figure(1);
+
+plot(1:length(AccMagnitude),AccMagnitude);
+hold on;
+plot(1:length(GroundTruth), GroundTruth);
 
 
 %% close writing feature file
