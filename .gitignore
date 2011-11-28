@@ -1,0 +1,8 @@
+# for MAC
+.DS_Store
+raw/
+rawOld/
+normFeatures
+features
+parsedRawData
+rawData
