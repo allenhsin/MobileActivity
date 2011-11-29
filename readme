@@ -5,6 +5,7 @@
 
 2. java ParseRawData <rawData> <parsedRawDATA>
 把rawData轉換成適合MATLAB吃的格式
+default請打 java ParseRawData rawData parsedRawData
 
 3a. java extractFeature <PARSEDRawData> <featureoutput>
 吃兩個argument 第一個是rawData 第二個是output feature的檔名
