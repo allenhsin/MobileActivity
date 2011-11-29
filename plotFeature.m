@@ -3,6 +3,7 @@ close all; clear all; clc;
 
 %% parameter
 readFeatureDataFileName = 'normFeatures';
+readPCAFileName         = 'featurePCA';
 
 %% read raw data from file
 
@@ -17,6 +18,20 @@ RD          = data{5};
 Energy      = data{6};
 SV          = data{7};
 GroundTruth = data{8};
+
+fclose(fidRead);
+
+fidRead = fopen(readPCAFileName, 'r');
+
+data = textscan(fidRead, '%f %f %f %f %f %f %f %d', 'delimiter', ',');
+PCA1        = data{1};
+PCA2        = data{2};
+PCA3        = data{3};
+PCA4        = data{4};
+PCA5        = data{5};
+PCA6        = data{6};
+PCA7        = data{7};
+%GroundTruth = data{8};
 
 fclose(fidRead);
 
@@ -98,6 +113,39 @@ for i = 1:length(GroundTruth)
 end
 xlabel('Variance');
 ylabel('Peak Frequency');
+
+
+figure(5);
+hold on;
+grid on;
+for i = 1:length(GroundTruth)
+    if      GroundTruth(i) == 0
+        plot(PCA1(i), PCA2(i), 'xr');
+    elseif  GroundTruth(i) == 1
+        plot(PCA1(i), PCA2(i), '+b');
+    elseif  GroundTruth(i) == 2
+        plot(PCA1(i), PCA2(i), '.g');
+    elseif  GroundTruth(i) == 3
+        plot(PCA1(i), PCA2(i), '.c');
+    elseif  GroundTruth(i) == 4
+        plot(PCA1(i), PCA2(i), '.k');
+    end
+end
+xlabel('PC 1');
+ylabel('PC 2');
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

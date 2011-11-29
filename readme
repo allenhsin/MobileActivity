@@ -21,14 +21,23 @@ label 給的方式是用voting 該timewindow中最多的activity做為該label
 4. normalizedFeature.m
 把各feature都normalize成最大值1
 
-5. python separator.py
+5. featurePCA.m
+把normFeatures變成principle components
+
+6. plotFeature.m
+把feature兩兩畫在2D space上，另外也把最重要的兩個PC畫在2D space上
+
+7. python separator.py
 ## 要修正裡面兩個變數的值 1. NUM_OF_FEATURES 2.INPUT_FILE_NAME
 將feature檔 依照groundtruth分成五個類
 class0 -> 都是stationary的feature
 以此類推
 
-6. python sepTrainTest.py
-將feature分成train和test兩份
+8. python sepTrainTest.py
+將各個class的normalized feature分成train和test兩份
 
-7. java calMeanWithAllData
+9. python combine.py
+將各個class的train和test data合併的單一的train和test file
+
+10. java calMeanWithAllData
 算各個cluster的mean

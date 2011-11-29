@@ -1,13 +1,13 @@
 
 
-a = open('class0','w')
-b = open('class1','w')
-c = open('class2','w')
-d = open('class3','w')
-e = open('class4','w')
+a = open('Class0','w') #Stationary
+b = open('Class1','w') #Walking
+c = open('Class2','w') #Running
+d = open('Class3','w') #Biking
+e = open('Class4','w') #Taking Bus
 
-NUM_OF_FEATURES = 4
-INPUT_FILE_NAME = "features"
+NUM_OF_FEATURES = 7
+INPUT_FILE_NAME = "normFeatures"
 with open(INPUT_FILE_NAME) as f:
 	for line in f:
 		seg = line.split(',')
@@ -23,7 +23,7 @@ with open(INPUT_FILE_NAME) as f:
 			c.write(line)
 		elif gt == 3:
 			d.write(line)
-		elif gt ==4:
+		elif gt == 4:
 			e.write(line)
 		else:
 			print "it won't happen."

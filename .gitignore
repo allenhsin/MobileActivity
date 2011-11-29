@@ -1,7 +1,7 @@
 # for MAC
 .DS_Store
 raw/
-rawOld/
+raw*/
 normFeatures
 features
 parsedRawData
