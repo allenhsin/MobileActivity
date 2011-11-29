@@ -35,7 +35,7 @@ public class ParseRawData
 		}
 		catch(Exception e)
 		{
-			System.err.println("Error: "+ e.getMessage() + " "+ e);
+			System.err.println("ERROR: "+ e.getMessage() + " "+ e);
 		}
 		
 	}

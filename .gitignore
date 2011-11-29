@@ -9,3 +9,9 @@ rawData
 *.o
 *.so
 *.m~
+Class*
+testClass*
+trainClass*
+test
+train
+featurePCA
