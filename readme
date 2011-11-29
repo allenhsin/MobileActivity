@@ -1,37 +1,33 @@
+請按照以下步驟處理Data
+
 1. sh combineRaw.sh
 把多份的./raw/Accel* 資料combine為 ./rawData
-
 
 2. java ParseRawData <rawData> <parsedRawDATA>
 把rawData轉換成適合MATLAB吃的格式
 
-
-3. java extractFeature <PARSEDRawData> <featureoutput>
+3a. java extractFeature <PARSEDRawData> <featureoutput>
 吃兩個argument 第一個是rawData 第二個是output feature的檔名
 p.s.  compile java code first: javac extractFeature.java
 把rawData 變成尚未normalize 的 feature
 目前產生15 + 2 個feature
 label 給的方式是用voting 該timewindow中最多的activity做為該label
 
+3b. extractFeature.m
+新的feature extraction file
+目前有7個feature
 
-4. extractFeature.m
-嘗試新Feature的MTATLAB檔
-
-
-5. normalizedFeature.m
+4. normalizedFeature.m
 把各feature都normalize成最大值1
 
-
-6. python separator.py
+5. python separator.py
 ## 要修正裡面兩個變數的值 1. NUM_OF_FEATURES 2.INPUT_FILE_NAME
 將feature檔 依照groundtruth分成五個類
 class0 -> 都是stationary的feature
 以此類推
 
-
-7. python sepTrainTest.py
+6. python sepTrainTest.py
 將feature分成train和test兩份
 
-
-8. java calMeanWithAllData
+7. java calMeanWithAllData
 算各個cluster的mean
