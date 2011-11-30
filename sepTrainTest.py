@@ -1,6 +1,6 @@
 import random
 
-training_feaction = 0.5
+testing_fraction = 0.7
 
 a0 = open('trainClass0','w')
 b0 = open('testClass0','w')
@@ -8,7 +8,7 @@ with open("Class0") as f0:
 	for line in f0:
 		
 		r = random.random()
-		if r >= training_feaction:
+		if r >= testing_fraction:
 			a0.write(line)
 		else:
 			b0.write(line)
@@ -20,7 +20,7 @@ with open("Class1") as f1:
 	for line in f1:
 		
 		r = random.random()
-		if r >= training_feaction:
+		if r >= testing_fraction:
 			a1.write(line)
 		else:
 			b1.write(line)
@@ -32,7 +32,7 @@ with open("Class2") as f2:
 	for line in f2:
 		
 		r = random.random()
-		if r >= training_feaction:
+		if r >= testing_fraction:
 			a2.write(line)
 		else:
 			b2.write(line)
@@ -44,7 +44,7 @@ with open("Class3") as f3:
 	for line in f3:
 		
 		r = random.random()
-		if r >= training_feaction:
+		if r >= testing_fraction:
 			a3.write(line)
 		else:
 			b3.write(line)
@@ -56,7 +56,7 @@ with open("Class4") as f4:
 	for line in f4:
 		
 		r = random.random()
-		if r >= training_feaction:
+		if r >= testing_fraction:
 			a4.write(line)
 		else:
 			b4.write(line)
