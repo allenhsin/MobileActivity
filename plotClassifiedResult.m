@@ -180,8 +180,12 @@ ylabel('Peak Frequency');
 title('Classified Labeling');
 
 
+%% accuracy
 
+labelDiff = GroundTruth - Classified;
 
+accu = length(find(labelDiff == 0))/length(GroundTruth);
+disp(accu);
 
 
 
