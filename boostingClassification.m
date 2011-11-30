@@ -10,10 +10,13 @@ readTrainClass3   = 'trainClass3';
 readTest          = 'test'       ;
 
 writeTestResult   = 'boostClassifiedResult';
+writeWeightResult = 'boostFeatureImportance';
 
 boostingClass0Ite = 200;
 boostingClass1Ite = 50;
 boostingClass2Ite = 10;
+
+NUM_FEATURE       = 7;
 
 %% read training feature from file
 
@@ -175,6 +178,31 @@ for i = 1:sizeTest
     
 end
 
+%% feature importance analysis
+
+class0FeatureWeight = zeros(NUM_FEATURE,1);
+for i = 1:length(modelClass0)
+    class0FeatureWeight(modelClass0(i).dimension) = class0FeatureWeight(modelClass0(i).dimension) + modelClass0(i).alpha;
+end
+
+class1FeatureWeight = zeros(NUM_FEATURE,1);
+for i = 1:length(modelClass1)
+    class1FeatureWeight(modelClass1(i).dimension) = class1FeatureWeight(modelClass1(i).dimension) + modelClass1(i).alpha;
+end
+
+class2FeatureWeight = zeros(NUM_FEATURE,1);
+for i = 1:length(modelClass2)
+    class2FeatureWeight(modelClass2(i).dimension) = class2FeatureWeight(modelClass2(i).dimension) + modelClass2(i).alpha;
+end
+
+class0FeatureWeight = class0FeatureWeight/sum(class0FeatureWeight);
+class1FeatureWeight = class1FeatureWeight/sum(class1FeatureWeight);
+class2FeatureWeight = class2FeatureWeight/sum(class2FeatureWeight);
+
+
+
+
+
 %% write result to file
 
 fidWrite = fopen(writeTestResult, 'w');
@@ -192,6 +220,18 @@ for i = 1:sizeTest
     fprintf(fidWrite, '\n');
 end
 
-
 fclose(fidWrite);
+
+
+fidWriteFeatWeight = fopen(writeWeightResult, 'w');
+
+fprintf(fidWriteFeatWeight, '%3.5f,%3.5f,%3.5f,%3.5f,%3.5f,%3.5f,%3.5f\n', class0FeatureWeight);
+fprintf(fidWriteFeatWeight, '%3.5f,%3.5f,%3.5f,%3.5f,%3.5f,%3.5f,%3.5f\n', class1FeatureWeight);
+fprintf(fidWriteFeatWeight, '%3.5f,%3.5f,%3.5f,%3.5f,%3.5f,%3.5f,%3.5f\n', class2FeatureWeight);
+
+fclose(fidWriteFeatWeight);
+
+
+
+
 

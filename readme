@@ -39,5 +39,11 @@ class0 -> 都是stationary的feature
 9. python combine.py
 將各個class的train和test data合併的單一的train和test file
 
+10. boostingClassification.m
+使用adaboost classifier來作classification
+
+11. plotClassifiedResult.m
+把boosting的結果畫出來
+
 10. java calMeanWithAllData
 算各個cluster的mean
