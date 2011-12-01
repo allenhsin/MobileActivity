@@ -42,8 +42,14 @@ class0 -> 都是stationary的feature
 10. boostingClassification.m
 使用adaboost classifier來作classification
 
-11. plotClassifiedResult.m
+11. boostingClassificationPCA.m
+同上，換成PCA的feature
+
+12. plotClassifiedResult.m
 把boosting的結果畫出來
 
-10. java calMeanWithAllData
+13. plotClassifiedResultPCA.m
+同上，換成PCA的result
+
+14. java calMeanWithAllData
 算各個cluster的mean
