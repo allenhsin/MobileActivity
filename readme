@@ -18,10 +18,10 @@ label 給的方式是用voting 該timewindow中最多的activity做為該label
 新的feature extraction file
 目前有7個feature
 
-4. normalizedFeature.m
+4. normalizeFeature.m
 把各feature都normalize成最大值1
 
-5. featurePCA.m
+5. normFeaturePCA.m
 把normFeatures變成principle components
 
 6. plotFeature.m
