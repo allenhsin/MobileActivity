@@ -10,7 +10,7 @@ readTrainClass3   = 'trainClass3';
 readTest          = 'test'       ;
 
 writeTestResult   = 'boostClassifiedResult';
-writeWeightResult = 'boostFeatureImportance';
+writeWeightResult = 'boostFeatureImportance.csv';
 
 boostingClass0Ite = 200;
 boostingClass1Ite = 50;
