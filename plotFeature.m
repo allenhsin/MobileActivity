@@ -3,7 +3,7 @@ close all; clear all; clc;
 
 %% parameter
 readFeatureDataFileName = 'normFeatures';
-readPCAFileName         = 'featurePCA';
+readPCAFileName         = 'normFeaturesPCA';
 
 %% read raw data from file
 
