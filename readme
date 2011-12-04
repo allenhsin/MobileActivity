@@ -7,7 +7,7 @@
 把rawData轉換成適合MATLAB吃的格式
 default請打 java ParseRawData rawData parsedRawData
 
-3a. java extractFeature <PARSEDRawData> <featureoutput>
+3a. java extractFeature <PARSEDRawData> <featureoutput> (not used)
 吃兩個argument 第一個是rawData 第二個是output feature的檔名
 p.s.  compile java code first: javac extractFeature.java
 把rawData 變成尚未normalize 的 feature
@@ -42,14 +42,21 @@ class0 -> 都是stationary的feature
 10. boostingClassification.m
 使用adaboost classifier來作classification
 
-11. boostingClassificationPCA.m
-同上，換成PCA的feature
-
-12. plotClassifiedResult.m
+11. plotClassifiedResult.m
 把boosting的結果畫出來
 
-13. plotClassifiedResultPCA.m
-同上，換成PCA的result
+12. boostingClassificationPCAPreTest.m
+使用adaboost做Principle component的classification
+並且決定dimension reduction的feature個數
 
-14. java calMeanWithAllData
+13. plotClassifiedResultPCAPreTest.m
+換成PCA的plot result
+
+14. boostingClassificationPCA.m
+dimension reduction後用adaboost做classification
+
+15. plotClassifiedResultPCA.m
+換成PCA的result
+
+16. java calMeanWithAllData (not used)
 算各個cluster的mean
