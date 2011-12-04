@@ -12,8 +12,8 @@ readTest          = 'test'       ;
 writeTestResult   = 'boostClassifiedResult';
 writeWeightResult = 'boostFeatureImportance.csv';
 
-boostingClass0Ite = 100;
-boostingClass1Ite = 30;
+boostingClass0Ite = 150;
+boostingClass1Ite = 10;
 boostingClass2Ite = 10;
 
 NUM_FEATURE       = 7;

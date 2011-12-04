@@ -42,9 +42,9 @@ hold on;
 grid on;
 for i = 1:length(GroundTruth)
     if      GroundTruth(i) == 0
-        plot(CL(i), RD(i), 'xr');
+        plot(CL(i), RD(i), '.r');
     elseif  GroundTruth(i) == 1
-        plot(CL(i), RD(i), '+b');
+        plot(CL(i), RD(i), '.b');
     elseif  GroundTruth(i) == 2
         plot(CL(i), RD(i), '.g');
     elseif  GroundTruth(i) == 3
@@ -61,9 +61,9 @@ hold on;
 grid on;
 for i = 1:length(GroundTruth)
     if      GroundTruth(i) == 0
-        plot(ANE(i), Energy(i), 'xr');
+        plot(ANE(i), Energy(i), '.r');
     elseif  GroundTruth(i) == 1
-        plot(ANE(i), Energy(i), '+b');
+        plot(ANE(i), Energy(i), '.b');
     elseif  GroundTruth(i) == 2
         plot(ANE(i), Energy(i), '.g');
     elseif  GroundTruth(i) == 3
@@ -80,9 +80,9 @@ hold on;
 grid on;
 for i = 1:length(GroundTruth)
     if      GroundTruth(i) == 0
-        plot(SV(i), RD(i), 'xr');
+        plot(SV(i), RD(i), '.r');
     elseif  GroundTruth(i) == 1
-        plot(SV(i), RD(i), '+b');
+        plot(SV(i), RD(i), '.b');
     elseif  GroundTruth(i) == 2
         plot(SV(i), RD(i), '.g');
     elseif  GroundTruth(i) == 3
@@ -100,9 +100,9 @@ hold on;
 grid on;
 for i = 1:length(GroundTruth)
     if      GroundTruth(i) == 0
-        plot(var(i), peakFreq(i), 'xr');
+        plot(var(i), peakFreq(i), '.r');
     elseif  GroundTruth(i) == 1
-        plot(var(i), peakFreq(i), '+b');
+        plot(var(i), peakFreq(i), '.b');
     elseif  GroundTruth(i) == 2
         plot(var(i), peakFreq(i), '.g');
     elseif  GroundTruth(i) == 3
@@ -120,9 +120,9 @@ hold on;
 grid on;
 for i = 1:length(GroundTruth)
     if      GroundTruth(i) == 0
-        plot(PCA1(i), PCA2(i), 'xr');
+        plot(PCA1(i), PCA2(i), '.r');
     elseif  GroundTruth(i) == 1
-        plot(PCA1(i), PCA2(i), '+b');
+        plot(PCA1(i), PCA2(i), '.b');
     elseif  GroundTruth(i) == 2
         plot(PCA1(i), PCA2(i), '.g');
     elseif  GroundTruth(i) == 3

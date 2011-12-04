@@ -10,13 +10,13 @@ readTrainClass3   = 'trainClass3PCA';
 readTest          = 'testPCA'       ;
 
 writeTestResult   = 'boostClassifiedPCAResult';
-writeWeightResult = 'boostFeaturePCAImportance.csv';
+%writeWeightResult = 'boostFeaturePCAImportance.csv';
 
 boostingClass0Ite = 200;
-boostingClass1Ite = 100;
+boostingClass1Ite = 10;
 boostingClass2Ite = 10;
 
-NUM_FEATURE       = 3;
+NUM_FEATURE       = 4;
 
 %% read training feature from file
 
@@ -90,10 +90,10 @@ fclose(fidTest       );
 labelClass0 = -1*ones(sizeTrainClass0+sizeTrainClass1+sizeTrainClass2+sizeTrainClass3,1);
 labelClass0(1:sizeTrainClass0) = ones(sizeTrainClass0,1);
 
-trainClass0   = [PC1TrainClass0 PC2TrainClass0 PC3TrainClass0 ; ...
-                 PC1TrainClass1 PC2TrainClass1 PC3TrainClass1 ; ...
-                 PC1TrainClass2 PC2TrainClass2 PC3TrainClass2 ; ...
-                 PC1TrainClass3 PC2TrainClass3 PC3TrainClass3 ];
+trainClass0   = [PC1TrainClass0 PC2TrainClass0 PC3TrainClass0 PC4TrainClass0 ; ...
+                 PC1TrainClass1 PC2TrainClass1 PC3TrainClass1 PC4TrainClass1 ; ...
+                 PC1TrainClass2 PC2TrainClass2 PC3TrainClass2 PC4TrainClass2 ; ...
+                 PC1TrainClass3 PC2TrainClass3 PC3TrainClass3 PC4TrainClass3 ];
 % adaboost
 [classEstimateClass0,modelClass0]=adaboost('train',trainClass0,labelClass0,boostingClass0Ite);
 
@@ -102,9 +102,9 @@ trainClass0   = [PC1TrainClass0 PC2TrainClass0 PC3TrainClass0 ; ...
 labelClass1 = -1*ones(sizeTrainClass1+sizeTrainClass2+sizeTrainClass3,1);
 labelClass1(1:sizeTrainClass1) = ones(sizeTrainClass1,1);
 
-trainClass1   = [PC1TrainClass1 PC2TrainClass1 PC3TrainClass1 ; ...
-                 PC1TrainClass2 PC2TrainClass2 PC3TrainClass2 ; ...
-                 PC1TrainClass3 PC2TrainClass3 PC3TrainClass3 ];
+trainClass1   = [PC1TrainClass1 PC2TrainClass1 PC3TrainClass1 PC4TrainClass1 ; ...
+                 PC1TrainClass2 PC2TrainClass2 PC3TrainClass2 PC4TrainClass2 ; ...
+                 PC1TrainClass3 PC2TrainClass3 PC3TrainClass3 PC4TrainClass3 ];
 % adaboost
 [classEstimateClass1,modelClass1]=adaboost('train',trainClass1,labelClass1,boostingClass1Ite);
 
@@ -113,8 +113,8 @@ trainClass1   = [PC1TrainClass1 PC2TrainClass1 PC3TrainClass1 ; ...
 labelClass2 = -1*ones(sizeTrainClass2+sizeTrainClass3,1);
 labelClass2(1:sizeTrainClass2) = ones(sizeTrainClass2,1);
 
-trainClass2   = [PC1TrainClass2 PC2TrainClass2 PC3TrainClass2 ; ...
-                 PC1TrainClass3 PC2TrainClass3 PC3TrainClass3 ];
+trainClass2   = [PC1TrainClass2 PC2TrainClass2 PC3TrainClass2 PC4TrainClass2; ...
+                 PC1TrainClass3 PC2TrainClass3 PC3TrainClass3 PC4TrainClass3];
 % adaboost
 [classEstimateClass2,modelClass2]=adaboost('train',trainClass2,labelClass2,boostingClass2Ite);
 
@@ -149,7 +149,7 @@ title('Classification Error of Class2 vs. Boosting Iterations');
 
 %% test the boosting classifier
 
-testFeatures = [PC1Test PC2Test PC3Test];
+testFeatures = [PC1Test PC2Test PC3Test PC4Test];
 
 classifiedLabel = zeros(sizeTest, 1);
 
@@ -211,6 +211,7 @@ for i = 1:sizeTest
     fprintf(fidWrite, '%3.5f,', testFeatures(i,1)   );
     fprintf(fidWrite, '%3.5f,', testFeatures(i,2)   );
     fprintf(fidWrite, '%3.5f,', testFeatures(i,3)   );
+    fprintf(fidWrite, '%3.5f,', testFeatures(i,4)   );
     fprintf(fidWrite, '%d,'   , GroundTruthTest(i)  );
     fprintf(fidWrite, '%d'    , classifiedLabel(i)  );
     fprintf(fidWrite, '\n');
@@ -219,13 +220,13 @@ end
 fclose(fidWrite);
 
 
-fidWriteFeatWeight = fopen(writeWeightResult, 'w');
+%fidWriteFeatWeight = fopen(writeWeightResult, 'w');
 
-fprintf(fidWriteFeatWeight, '%3.5f,%3.5f,%3.5f\n', class0FeatureWeight);
-fprintf(fidWriteFeatWeight, '%3.5f,%3.5f,%3.5f\n', class1FeatureWeight);
-fprintf(fidWriteFeatWeight, '%3.5f,%3.5f,%3.5f\n', class2FeatureWeight);
+%fprintf(fidWriteFeatWeight, '%3.5f,%3.5f,%3.5f\n', class0FeatureWeight);
+%fprintf(fidWriteFeatWeight, '%3.5f,%3.5f,%3.5f\n', class1FeatureWeight);
+%fprintf(fidWriteFeatWeight, '%3.5f,%3.5f,%3.5f\n', class2FeatureWeight);
 
-fclose(fidWriteFeatWeight);
+%fclose(fidWriteFeatWeight);
 
 
 

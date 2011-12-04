@@ -12,8 +12,8 @@ readTest          = 'testPCA'       ;
 writeTestResult   = 'boostClassifiedPCAResult';
 writeWeightResult = 'boostFeaturePCAImportance.csv';
 
-boostingClass0Ite = 50;
-boostingClass1Ite = 200;
+boostingClass0Ite = 150;
+boostingClass1Ite = 10;
 boostingClass2Ite = 10;
 
 NUM_FEATURE       = 7;

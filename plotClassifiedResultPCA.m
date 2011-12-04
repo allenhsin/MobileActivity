@@ -8,12 +8,13 @@ readClassifiedResultFile = 'boostClassifiedPCAResult';
 
 fidRead = fopen(readClassifiedResultFile, 'r');
 
-data = textscan(fidRead, '%f %f %f %d %d', 'delimiter', ',');
+data = textscan(fidRead, '%f %f %f %f %d %d', 'delimiter', ',');
 PC1         = data{1};
 PC2    = data{2};
 PC3          = data{3};
-GroundTruth = data{4};
-Classified  = data{5};
+PC4    = data{4};
+GroundTruth = data{5};
+Classified  = data{6};
 
 fclose(fidRead);
 
