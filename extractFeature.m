@@ -138,15 +138,17 @@ for i = 2:rawDataSize
             
             
             % write features to feature file
-            fprintf(fidWrite, '%3.5f,', currentWindowVar     );
-            fprintf(fidWrite, '%3.5f,', currentWindowPeakFreq);
-            fprintf(fidWrite, '%3.5f,', currentWindowCL      );
-            fprintf(fidWrite, '%3.5f,', currentWindowANE     );
-            fprintf(fidWrite, '%3.5f,', currentWindowRD      );
-            fprintf(fidWrite, '%3.5f,', currentWindowEnergy  );
-            fprintf(fidWrite, '%3.5f,', currentWindowSV      );
-            fprintf(fidWrite, '%d'    , currentWindowlabel   );
-            fprintf(fidWrite, '\n');
+            if currentWindowlabel ~= 4
+                fprintf(fidWrite, '%3.5f,', currentWindowVar     );
+                fprintf(fidWrite, '%3.5f,', currentWindowPeakFreq);
+                fprintf(fidWrite, '%3.5f,', currentWindowCL      );
+                fprintf(fidWrite, '%3.5f,', currentWindowANE     );
+                fprintf(fidWrite, '%3.5f,', currentWindowRD      );
+                fprintf(fidWrite, '%3.5f,', currentWindowEnergy  );
+                fprintf(fidWrite, '%3.5f,', currentWindowSV      );
+                fprintf(fidWrite, '%d'    , currentWindowlabel   );
+                fprintf(fidWrite, '\n');
+            end
             
             
             

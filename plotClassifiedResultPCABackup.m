@@ -2,20 +2,20 @@
 close all; clear all; clc;
 
 %% parameter
-readClassifiedResultFile = 'boostClassifiedResult';
+readClassifiedResultFile = 'boostClassifiedPCAResult';
 
 %% read raw data from file
 
 fidRead = fopen(readClassifiedResultFile, 'r');
 
 data = textscan(fidRead, '%f %f %f %f %f %f %f %d %d', 'delimiter', ',');
-var         = data{1};
-peakFreq    = data{2};
-CL          = data{3};
-ANE         = data{4};
-RD          = data{5};
-Energy      = data{6};
-SV          = data{7};
+PC1         = data{1};
+PC2    = data{2};
+PC3          = data{3};
+PC4         = data{4};
+PC5          = data{5};
+PC6      = data{6};
+PC7          = data{7};
 GroundTruth = data{8};
 Classified  = data{9};
 
@@ -29,37 +29,37 @@ figure(1);
 subplot(1,2,1); hold on; grid on;
 for i = 1:sizeData
     if      GroundTruth(i) == 0
-        plot(CL(i), RD(i), 'xr');
+        plot(PC3(i), PC4(i), 'xr');
     elseif  GroundTruth(i) == 1
-        plot(CL(i), RD(i), '+b');
+        plot(PC3(i), PC4(i), '+b');
     elseif  GroundTruth(i) == 2
-        plot(CL(i), RD(i), '.g');
+        plot(PC3(i), PC4(i), '.g');
     elseif  GroundTruth(i) == 3
-        plot(CL(i), RD(i), '.c');
+        plot(PC3(i), PC4(i), '.c');
     elseif  GroundTruth(i) == 4
-        plot(CL(i), RD(i), '.k');
+        plot(PC3(i), PC4(i), '.k');
     end
 end
-xlabel('Curve Length');
-ylabel('Rhythmic Discharge');
+xlabel('PC3');
+ylabel('PC4');
 title('Ground Truth Labeling');
 
 subplot(1,2,2); hold on; grid on;
 for i = 1:sizeData
     if      Classified(i) == 0
-        plot(CL(i), RD(i), 'xr');
+        plot(PC3(i), PC4(i), 'xr');
     elseif  Classified(i) == 1
-        plot(CL(i), RD(i), '+b');
+        plot(PC3(i), PC4(i), '+b');
     elseif  Classified(i) == 2
-        plot(CL(i), RD(i), '.g');
+        plot(PC3(i), PC4(i), '.g');
     elseif  Classified(i) == 3
-        plot(CL(i), RD(i), '.c');
+        plot(PC3(i), PC4(i), '.c');
     elseif  Classified(i) == 4
-        plot(CL(i), RD(i), '.k');
+        plot(PC3(i), PC4(i), '.k');
     end
 end
-xlabel('Curve Length');
-ylabel('Rhythmic Discharge');
+xlabel('PC3');
+ylabel('PC4');
 title('Classified Labeling');
 
 
@@ -68,37 +68,37 @@ figure(2);
 subplot(1,2,1); hold on; grid on;
 for i = 1:sizeData
     if      GroundTruth(i) == 0
-        plot(ANE(i), Energy(i), 'xr');
+        plot(PC5(i), PC6(i), 'xr');
     elseif  GroundTruth(i) == 1
-        plot(ANE(i), Energy(i), '+b');
+        plot(PC5(i), PC6(i), '+b');
     elseif  GroundTruth(i) == 2
-        plot(ANE(i), Energy(i), '.g');
+        plot(PC5(i), PC6(i), '.g');
     elseif  GroundTruth(i) == 3
-        plot(ANE(i), Energy(i), '.c');
+        plot(PC5(i), PC6(i), '.c');
     elseif  GroundTruth(i) == 4
-        plot(ANE(i), Energy(i), '.k');
+        plot(PC5(i), PC6(i), '.k');
     end
 end
-xlabel('Non-linear Energy');
-ylabel('Total Energy');
+xlabel('PC5');
+ylabel('PC6');
 title('Ground Truth Labeling');
 
 subplot(1,2,2); hold on; grid on;
 for i = 1:sizeData
     if      Classified(i) == 0
-        plot(ANE(i), Energy(i), 'xr');
+        plot(PC5(i), PC6(i), 'xr');
     elseif  Classified(i) == 1
-        plot(ANE(i), Energy(i), '+b');
+        plot(PC5(i), PC6(i), '+b');
     elseif  Classified(i) == 2
-        plot(ANE(i), Energy(i), '.g');
+        plot(PC5(i), PC6(i), '.g');
     elseif  Classified(i) == 3
-        plot(ANE(i), Energy(i), '.c');
+        plot(PC5(i), PC6(i), '.c');
     elseif  Classified(i) == 4
-        plot(ANE(i), Energy(i), '.k');
+        plot(PC5(i), PC6(i), '.k');
     end
 end
-xlabel('Non-linear Energy');
-ylabel('Total Energy');
+xlabel('PC5');
+ylabel('PC6');
 title('Classified Labeling');
 
 
@@ -107,76 +107,76 @@ figure(3);
 subplot(1,2,1); hold on; grid on;
 for i = 1:sizeData
     if      GroundTruth(i) == 0
-        plot(SV(i), RD(i), 'xr');
+        plot(PC7(i), PC1(i), 'xr');
     elseif  GroundTruth(i) == 1
-        plot(SV(i), RD(i), '+b');
+        plot(PC7(i), PC1(i), '+b');
     elseif  GroundTruth(i) == 2
-        plot(SV(i), RD(i), '.g');
+        plot(PC7(i), PC1(i), '.g');
     elseif  GroundTruth(i) == 3
-        plot(SV(i), RD(i), '.c');
+        plot(PC7(i), PC1(i), '.c');
     elseif  GroundTruth(i) == 4
-        plot(SV(i), RD(i), '.k');
+        plot(PC7(i), PC1(i), '.k');
     end
 end
-xlabel('Strength Variation');
-ylabel('Rhythmic Discharge');
+xlabel('PC7');
+ylabel('PC1');
 title('Ground Truth Labeling');
 
 subplot(1,2,2); hold on; grid on;
 for i = 1:sizeData
     if      Classified(i) == 0
-        plot(SV(i), RD(i), 'xr');
+        plot(PC7(i), PC1(i), 'xr');
     elseif  Classified(i) == 1
-        plot(SV(i), RD(i), '+b');
+        plot(PC7(i), PC1(i), '+b');
     elseif  Classified(i) == 2
-        plot(SV(i), RD(i), '.g');
+        plot(PC7(i), PC1(i), '.g');
     elseif  Classified(i) == 3
-        plot(SV(i), RD(i), '.c');
+        plot(PC7(i), PC1(i), '.c');
     elseif  Classified(i) == 4
-        plot(SV(i), RD(i), '.k');
+        plot(PC7(i), PC1(i), '.k');
     end
 end
-xlabel('Strength Variation');
-ylabel('Rhythmic Discharge');
+xlabel('PC7');
+ylabel('PC1');
 title('Classified Labeling');
 
-
 %}
+
 figure(4);
 subplot(1,2,1); hold on; grid on;
 for i = 1:sizeData
     if      GroundTruth(i) == 0
-        plot(var(i), peakFreq(i), 'xr');
+        plot(PC1(i), PC2(i), 'xr');
     elseif  GroundTruth(i) == 1
-        plot(var(i), peakFreq(i), '+b');
+        plot(PC1(i), PC2(i), '+b');
     elseif  GroundTruth(i) == 2
-        plot(var(i), peakFreq(i), '.g');
+        plot(PC1(i), PC2(i), '.g');
     elseif  GroundTruth(i) == 3
-        plot(var(i), peakFreq(i), '.c');
+        plot(PC1(i), PC2(i), '.c');
     elseif  GroundTruth(i) == 4
-        plot(var(i), peakFreq(i), '.k');
+        plot(PC1(i), PC2(i), '.k');
     end
 end
-xlabel('Variance');
-ylabel('Peak Frequency');
+xlabel('PC1');
+ylabel('PC2');
 title('Ground Truth Labeling');
 
 subplot(1,2,2); hold on; grid on;
 for i = 1:sizeData
     if      Classified(i) == 0
-        plot(var(i), peakFreq(i), 'xr');
+        plot(PC1(i), PC2(i), 'xr');
     elseif  Classified(i) == 1
-        plot(var(i), peakFreq(i), '+b');
+        plot(PC1(i), PC2(i), '+b');
     elseif  Classified(i) == 2
-        plot(var(i), peakFreq(i), '.g');
+        plot(PC1(i), PC2(i), '.g');
     elseif  Classified(i) == 3
-        plot(var(i), peakFreq(i), '.c');
+        plot(PC1(i), PC2(i), '.c');
     elseif  Classified(i) == 4
-        plot(var(i), peakFreq(i), '.k');
+        plot(PC1(i), PC2(i), '.k');
     end
 end
-xlabel('Variance');
-ylabel('Peak Frequency');
+xlabel('PC1');
+ylabel('PC2');
 title('Classified Labeling');
 
 

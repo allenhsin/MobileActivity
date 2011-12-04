@@ -3,17 +3,17 @@ close all; clear all; clc;
 
 %% parameter
 
-readTrainClass0   = 'trainClass0';
-readTrainClass1   = 'trainClass1';
-readTrainClass2   = 'trainClass2';
-readTrainClass3   = 'trainClass3';
-readTest          = 'test'       ;
+readTrainClass0   = 'trainClass0PCA';
+readTrainClass1   = 'trainClass1PCA';
+readTrainClass2   = 'trainClass2PCA';
+readTrainClass3   = 'trainClass3PCA';
+readTest          = 'testPCA'       ;
 
-writeTestResult   = 'boostClassifiedResult';
-writeWeightResult = 'boostFeatureImportance.csv';
+writeTestResult   = 'boostClassifiedPCAResult';
+writeWeightResult = 'boostFeaturePCAImportance.csv';
 
-boostingClass0Ite = 100;
-boostingClass1Ite = 30;
+boostingClass0Ite = 50;
+boostingClass1Ite = 200;
 boostingClass2Ite = 10;
 
 NUM_FEATURE       = 7;
@@ -27,53 +27,53 @@ fidTrainClass3 = fopen(readTrainClass3, 'r');
 fidTest        = fopen(readTest       , 'r');
 
 data = textscan(fidTrainClass0, '%f %f %f %f %f %f %f %d', 'delimiter', ',');
-varTrainClass0         = data{1};
-peakFreqTrainClass0    = data{2};
-CLTrainClass0          = data{3};
-ANETrainClass0         = data{4};
-RDTrainClass0          = data{5};
-EnergyTrainClass0      = data{6};
-SVTrainClass0          = data{7};
-sizeTrainClass0        = length(varTrainClass0);
+PC1TrainClass0         = data{1};
+PC2TrainClass0    = data{2};
+PC3TrainClass0          = data{3};
+PC4TrainClass0         = data{4};
+PC5TrainClass0          = data{5};
+PC6TrainClass0      = data{6};
+PC7TrainClass0          = data{7};
+sizeTrainClass0        = length(PC1TrainClass0);
 
 data = textscan(fidTrainClass1, '%f %f %f %f %f %f %f %d', 'delimiter', ',');
-varTrainClass1         = data{1};
-peakFreqTrainClass1    = data{2};
-CLTrainClass1          = data{3};
-ANETrainClass1         = data{4};
-RDTrainClass1          = data{5};
-EnergyTrainClass1      = data{6};
-SVTrainClass1          = data{7};
-sizeTrainClass1        = length(varTrainClass1);
+PC1TrainClass1         = data{1};
+PC2TrainClass1    = data{2};
+PC3TrainClass1          = data{3};
+PC4TrainClass1         = data{4};
+PC5TrainClass1          = data{5};
+PC6TrainClass1      = data{6};
+PC7TrainClass1          = data{7};
+sizeTrainClass1        = length(PC1TrainClass1);
 
 data = textscan(fidTrainClass2, '%f %f %f %f %f %f %f %d', 'delimiter', ',');
-varTrainClass2         = data{1};
-peakFreqTrainClass2    = data{2};
-CLTrainClass2          = data{3};
-ANETrainClass2         = data{4};
-RDTrainClass2          = data{5};
-EnergyTrainClass2      = data{6};
-SVTrainClass2          = data{7};
-sizeTrainClass2        = length(varTrainClass2);
+PC1TrainClass2         = data{1};
+PC2TrainClass2    = data{2};
+PC3TrainClass2          = data{3};
+PC4TrainClass2         = data{4};
+PC5TrainClass2          = data{5};
+PC6TrainClass2      = data{6};
+PC7TrainClass2          = data{7};
+sizeTrainClass2        = length(PC1TrainClass2);
 
 data = textscan(fidTrainClass3, '%f %f %f %f %f %f %f %d', 'delimiter', ',');
-varTrainClass3         = data{1};
-peakFreqTrainClass3    = data{2};
-CLTrainClass3          = data{3};
-ANETrainClass3         = data{4};
-RDTrainClass3          = data{5};
-EnergyTrainClass3      = data{6};
-SVTrainClass3          = data{7};
-sizeTrainClass3        = length(varTrainClass3);
+PC1TrainClass3         = data{1};
+PC2TrainClass3    = data{2};
+PC3TrainClass3          = data{3};
+PC4TrainClass3         = data{4};
+PC5TrainClass3          = data{5};
+PC6TrainClass3      = data{6};
+PC7TrainClass3          = data{7};
+sizeTrainClass3        = length(PC1TrainClass3);
 
 data = textscan(fidTest, '%f %f %f %f %f %f %f %d', 'delimiter', ',');
-varTest                = data{1};
-peakFreqTest           = data{2};
-CLTest                 = data{3};
-ANETest                = data{4};
-RDTest                 = data{5};
-EnergyTest             = data{6};
-SVTest                 = data{7};
+PC1Test                = data{1};
+PC2Test           = data{2};
+PC3Test                 = data{3};
+PC4Test                = data{4};
+PC5Test                 = data{5};
+PC6Test             = data{6};
+PC7Test                 = data{7};
 GroundTruthTest        = data{8};
 sizeTest               = length(GroundTruthTest);
 
@@ -90,10 +90,10 @@ fclose(fidTest       );
 labelClass0 = -1*ones(sizeTrainClass0+sizeTrainClass1+sizeTrainClass2+sizeTrainClass3,1);
 labelClass0(1:sizeTrainClass0) = ones(sizeTrainClass0,1);
 
-trainClass0   = [varTrainClass0 peakFreqTrainClass0 CLTrainClass0 ANETrainClass0 RDTrainClass0 EnergyTrainClass0 SVTrainClass0; ...
-                 varTrainClass1 peakFreqTrainClass1 CLTrainClass1 ANETrainClass1 RDTrainClass1 EnergyTrainClass1 SVTrainClass1; ...
-                 varTrainClass2 peakFreqTrainClass2 CLTrainClass2 ANETrainClass2 RDTrainClass2 EnergyTrainClass2 SVTrainClass2; ...
-                 varTrainClass3 peakFreqTrainClass3 CLTrainClass3 ANETrainClass3 RDTrainClass3 EnergyTrainClass3 SVTrainClass3];
+trainClass0   = [PC1TrainClass0 PC2TrainClass0 PC3TrainClass0 PC4TrainClass0 PC5TrainClass0 PC6TrainClass0 PC7TrainClass0; ...
+                 PC1TrainClass1 PC2TrainClass1 PC3TrainClass1 PC4TrainClass1 PC5TrainClass1 PC6TrainClass1 PC7TrainClass1; ...
+                 PC1TrainClass2 PC2TrainClass2 PC3TrainClass2 PC4TrainClass2 PC5TrainClass2 PC6TrainClass2 PC7TrainClass2; ...
+                 PC1TrainClass3 PC2TrainClass3 PC3TrainClass3 PC4TrainClass3 PC5TrainClass3 PC6TrainClass3 PC7TrainClass3];
 % adaboost
 [classEstimateClass0,modelClass0]=adaboost('train',trainClass0,labelClass0,boostingClass0Ite);
 
@@ -102,9 +102,9 @@ trainClass0   = [varTrainClass0 peakFreqTrainClass0 CLTrainClass0 ANETrainClass0
 labelClass1 = -1*ones(sizeTrainClass1+sizeTrainClass2+sizeTrainClass3,1);
 labelClass1(1:sizeTrainClass1) = ones(sizeTrainClass1,1);
 
-trainClass1   = [varTrainClass1 peakFreqTrainClass1 CLTrainClass1 ANETrainClass1 RDTrainClass1 EnergyTrainClass1 SVTrainClass1; ...
-                 varTrainClass2 peakFreqTrainClass2 CLTrainClass2 ANETrainClass2 RDTrainClass2 EnergyTrainClass2 SVTrainClass2; ...
-                 varTrainClass3 peakFreqTrainClass3 CLTrainClass3 ANETrainClass3 RDTrainClass3 EnergyTrainClass3 SVTrainClass3];
+trainClass1   = [PC1TrainClass1 PC2TrainClass1 PC3TrainClass1 PC4TrainClass1 PC5TrainClass1 PC6TrainClass1 PC7TrainClass1; ...
+                 PC1TrainClass2 PC2TrainClass2 PC3TrainClass2 PC4TrainClass2 PC5TrainClass2 PC6TrainClass2 PC7TrainClass2; ...
+                 PC1TrainClass3 PC2TrainClass3 PC3TrainClass3 PC4TrainClass3 PC5TrainClass3 PC6TrainClass3 PC7TrainClass3];
 % adaboost
 [classEstimateClass1,modelClass1]=adaboost('train',trainClass1,labelClass1,boostingClass1Ite);
 
@@ -113,8 +113,8 @@ trainClass1   = [varTrainClass1 peakFreqTrainClass1 CLTrainClass1 ANETrainClass1
 labelClass2 = -1*ones(sizeTrainClass2+sizeTrainClass3,1);
 labelClass2(1:sizeTrainClass2) = ones(sizeTrainClass2,1);
 
-trainClass2   = [varTrainClass2 peakFreqTrainClass2 CLTrainClass2 ANETrainClass2 RDTrainClass2 EnergyTrainClass2 SVTrainClass2; ...
-                 varTrainClass3 peakFreqTrainClass3 CLTrainClass3 ANETrainClass3 RDTrainClass3 EnergyTrainClass3 SVTrainClass3];
+trainClass2   = [PC1TrainClass2 PC2TrainClass2 PC3TrainClass2 PC4TrainClass2 PC5TrainClass2 PC6TrainClass2 PC7TrainClass2; ...
+                 PC1TrainClass3 PC2TrainClass3 PC3TrainClass3 PC4TrainClass3 PC5TrainClass3 PC6TrainClass3 PC7TrainClass3];
 % adaboost
 [classEstimateClass2,modelClass2]=adaboost('train',trainClass2,labelClass2,boostingClass2Ite);
 
@@ -149,7 +149,7 @@ title('Classification Error of Class2 vs. Boosting Iterations');
 
 %% test the boosting classifier
 
-testFeatures = [varTest peakFreqTest CLTest ANETest RDTest EnergyTest SVTest];
+testFeatures = [PC1Test PC2Test PC3Test PC4Test PC5Test PC6Test PC7Test];
 
 classifiedLabel = zeros(sizeTest, 1);
 
