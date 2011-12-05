@@ -119,33 +119,35 @@ trainClass2   = [PC1TrainClass2 PC2TrainClass2 PC3TrainClass2 PC4TrainClass2; ..
 [classEstimateClass2,modelClass2]=adaboost('train',trainClass2,labelClass2,boostingClass2Ite);
 
 figure(1);
-subplot(2,2,1);
+subplot(1,3,1);
 errorClass0=zeros(1,length(modelClass0)); 
 for i=1:length(modelClass0) 
     errorClass0(i)=modelClass0(i).error; 
 end 
 grid on;
 plot(errorClass0); 
-title('Classification Error of Class0 vs. Boosting Iterations');
+title('Classification Error of Stationary Class','FontWeight','bold','FontSize',16);
+xlabel('Iteration','FontWeight','bold','FontSize',16);
 
-subplot(2,2,2);
+subplot(1,3,2);
 errorClass1=zeros(1,length(modelClass1)); 
 for i=1:length(modelClass1) 
     errorClass1(i)=modelClass1(i).error; 
 end 
 grid on;
 plot(errorClass1); 
-title('Classification Error of Class1 vs. Boosting Iterations');
+title('Classification Error of Walking CLass','FontWeight','bold','FontSize',16);
+xlabel('Iteration','FontWeight','bold','FontSize',16);
 
-subplot(2,2,3);
+subplot(1,3,3);
 errorClass2=zeros(1,length(modelClass2)); 
 for i=1:length(modelClass2) 
     errorClass2(i)=modelClass2(i).error; 
 end 
 grid on;
 plot(errorClass2); 
-title('Classification Error of Class2 vs. Boosting Iterations');
-
+title('Classification Error of Biking Class','FontWeight','bold','FontSize',16);
+xlabel('Iteration','FontWeight','bold','FontSize',16);
 
 %% test the boosting classifier
 

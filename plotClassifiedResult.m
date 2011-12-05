@@ -142,13 +142,16 @@ title('Classified Labeling');
 
 
 %}
+
+%{
 figure(4);
-subplot(1,2,1); hold on; grid on;
+%subplot(1,2,1); 
+hold on; grid on;
 for i = 1:sizeData
     if      GroundTruth(i) == 0
-        plot(var(i), peakFreq(i), 'xr');
+        plot(var(i), peakFreq(i), '.r');
     elseif  GroundTruth(i) == 1
-        plot(var(i), peakFreq(i), '+b');
+        plot(var(i), peakFreq(i), '.b');
     elseif  GroundTruth(i) == 2
         plot(var(i), peakFreq(i), '.g');
     elseif  GroundTruth(i) == 3
@@ -157,16 +160,18 @@ for i = 1:sizeData
         plot(var(i), peakFreq(i), '.k');
     end
 end
-xlabel('Variance');
-ylabel('Peak Frequency');
-title('Ground Truth Labeling');
+xlabel('Variance','FontWeight','bold','FontSize',16);
+ylabel('Peak Frequency','FontWeight','bold','FontSize',16);
+title('Ground Truth Labeling','FontWeight','bold','FontSize',16);
 
-subplot(1,2,2); hold on; grid on;
+figure(5);
+%subplot(1,2,2); 
+hold on; grid on;
 for i = 1:sizeData
     if      Classified(i) == 0
-        plot(var(i), peakFreq(i), 'xr');
+        plot(var(i), peakFreq(i), '.r');
     elseif  Classified(i) == 1
-        plot(var(i), peakFreq(i), '+b');
+        plot(var(i), peakFreq(i), '.b');
     elseif  Classified(i) == 2
         plot(var(i), peakFreq(i), '.g');
     elseif  Classified(i) == 3
@@ -175,10 +180,50 @@ for i = 1:sizeData
         plot(var(i), peakFreq(i), '.k');
     end
 end
-xlabel('Variance');
-ylabel('Peak Frequency');
-title('Classified Labeling');
+xlabel('Variance','FontWeight','bold','FontSize',16);
+ylabel('Peak Frequency','FontWeight','bold','FontSize',16);
+title('Classified Labeling','FontWeight','bold','FontSize',16);
+%}
 
+figure(6);
+%subplot(1,2,1); 
+hold on; grid on;
+for i = 1:sizeData
+    if      GroundTruth(i) == 0
+        plot(CL(i), peakFreq(i), '.r');
+    elseif  GroundTruth(i) == 1
+        plot(CL(i), peakFreq(i), '.b');
+    elseif  GroundTruth(i) == 2
+        plot(CL(i), peakFreq(i), '.g');
+    elseif  GroundTruth(i) == 3
+        plot(CL(i), peakFreq(i), '.c');
+    elseif  GroundTruth(i) == 4
+        plot(CL(i), peakFreq(i), '.k');
+    end
+end
+xlabel('Curve Length','FontWeight','bold','FontSize',16);
+ylabel('Peak Frequency','FontWeight','bold','FontSize',16);
+title('Ground Truth Labeling','FontWeight','bold','FontSize',16);
+
+figure(7);
+%subplot(1,2,2); 
+hold on; grid on;
+for i = 1:sizeData
+    if      Classified(i) == 0
+        plot(CL(i), peakFreq(i), '.r');
+    elseif  Classified(i) == 1
+        plot(CL(i), peakFreq(i), '.b');
+    elseif  Classified(i) == 2
+        plot(CL(i), peakFreq(i), '.g');
+    elseif  Classified(i) == 3
+        plot(CL(i), peakFreq(i), '.c');
+    elseif  Classified(i) == 4
+        plot(CL(i), peakFreq(i), '.k');
+    end
+end
+xlabel('Curve Length','FontWeight','bold','FontSize',16);
+ylabel('Peak Frequency','FontWeight','bold','FontSize',16);
+title('Classified Labeling','FontWeight','bold','FontSize',16);
 
 %% accuracy
 

@@ -126,7 +126,8 @@ for i=1:length(modelClass0)
 end 
 grid on;
 plot(errorClass0); 
-title('Classification Error of Class0 vs. Boosting Iterations');
+title('Classification Error of Stationary Class');
+xlabel('Iteration');
 
 subplot(2,2,2);
 errorClass1=zeros(1,length(modelClass1)); 
@@ -135,7 +136,8 @@ for i=1:length(modelClass1)
 end 
 grid on;
 plot(errorClass1); 
-title('Classification Error of Class1 vs. Boosting Iterations');
+title('Classification Error of Walking Class');
+xlabel('Iteration');
 
 subplot(2,2,3);
 errorClass2=zeros(1,length(modelClass2)); 
@@ -144,7 +146,8 @@ for i=1:length(modelClass2)
 end 
 grid on;
 plot(errorClass2); 
-title('Classification Error of Class2 vs. Boosting Iterations');
+title('Classification Error of Biking Class');
+xlabel('Iteration');
 
 
 %% test the boosting classifier

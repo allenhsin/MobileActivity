@@ -37,7 +37,7 @@ fclose(fidRead);
 
 %% plot
 
-figure(1);
+fig1 = figure(1);
 hold on;
 grid on;
 for i = 1:length(GroundTruth)
@@ -53,10 +53,10 @@ for i = 1:length(GroundTruth)
         plot(CL(i), RD(i), '.k');
     end
 end
-xlabel('Curve Length');
-ylabel('Rhythmic Discharge');
+xlabel('Curve Length','FontWeight','bold','FontSize',16);
+ylabel('Rhythmic Discharge','FontWeight','bold','FontSize',16);
 
-figure(2);
+fig2 = figure(2);
 hold on;
 grid on;
 for i = 1:length(GroundTruth)
@@ -72,10 +72,10 @@ for i = 1:length(GroundTruth)
         plot(ANE(i), Energy(i), '.k');
     end
 end
-xlabel('Non-linear Energy');
-ylabel('Total Energy');
+xlabel('Average Nonlinear Energy','FontWeight','bold','FontSize',16);
+ylabel('Total Energy','FontWeight','bold','FontSize',16);
 
-figure(3);
+fig3 = figure(3);
 hold on;
 grid on;
 for i = 1:length(GroundTruth)
@@ -91,11 +91,11 @@ for i = 1:length(GroundTruth)
         plot(SV(i), RD(i), '.k');
     end
 end
-xlabel('Strength Variation');
-ylabel('Rhythmic Discharge');
+xlabel('Strength Variation','FontWeight','bold','FontSize',16);
+ylabel('Rhythmic Discharge','FontWeight','bold','FontSize',16);
 
 
-figure(4);
+fig4 = figure(4);
 hold on;
 grid on;
 for i = 1:length(GroundTruth)
@@ -111,11 +111,11 @@ for i = 1:length(GroundTruth)
         plot(var(i), peakFreq(i), '.k');
     end
 end
-xlabel('Variance');
-ylabel('Peak Frequency');
+xlabel('Variance','FontWeight','bold','FontSize',16);
+ylabel('Peak Frequency','FontWeight','bold','FontSize',16);
 
 
-figure(5);
+fig5 = figure(5);
 hold on;
 grid on;
 for i = 1:length(GroundTruth)
@@ -131,8 +131,8 @@ for i = 1:length(GroundTruth)
         plot(PCA1(i), PCA2(i), '.k');
     end
 end
-xlabel('PC 1');
-ylabel('PC 2');
+xlabel('Principal Component 1','FontWeight','bold','FontSize',16);
+ylabel('Principal Component 2','FontWeight','bold','FontSize',16);
 
 
 

@@ -22,13 +22,12 @@ fclose(fidRead);
 
 sizeData = length(GroundTruth);
 
-figure(1);
-subplot(1,2,1); hold on; grid on;
+figure(1); hold on; grid on;
 for i = 1:sizeData
     if      GroundTruth(i) == 0
-        plot(PC1(i), PC2(i), 'xr');
+        plot(PC1(i), PC2(i), '.r');
     elseif  GroundTruth(i) == 1
-        plot(PC1(i), PC2(i), '+b');
+        plot(PC1(i), PC2(i), '.b');
     elseif  GroundTruth(i) == 2
         plot(PC1(i), PC2(i), '.g');
     elseif  GroundTruth(i) == 3
@@ -37,16 +36,16 @@ for i = 1:sizeData
         plot(PC1(i), PC2(i), '.k');
     end
 end
-xlabel('PC1');
-ylabel('PC2');
-title('Ground Truth Labeling');
+xlabel('PC1','FontWeight','bold','FontSize',16);
+ylabel('PC2','FontWeight','bold','FontSize',16);
+title('Ground Truth Labeling','FontWeight','bold','FontSize',16);
 
-subplot(1,2,2); hold on; grid on;
+figure(2); hold on; grid on;
 for i = 1:sizeData
     if      Classified(i) == 0
-        plot(PC1(i), PC2(i), 'xr');
+        plot(PC1(i), PC2(i), '.r');
     elseif  Classified(i) == 1
-        plot(PC1(i), PC2(i), '+b');
+        plot(PC1(i), PC2(i), '.b');
     elseif  Classified(i) == 2
         plot(PC1(i), PC2(i), '.g');
     elseif  Classified(i) == 3
@@ -55,9 +54,9 @@ for i = 1:sizeData
         plot(PC1(i), PC2(i), '.k');
     end
 end
-xlabel('PC1');
-ylabel('PC2');
-title('Classified Labeling');
+xlabel('PC1','FontWeight','bold','FontSize',16);
+ylabel('PC2','FontWeight','bold','FontSize',16);
+title('Classified Labeling','FontWeight','bold','FontSize',16);
 
 
 %% accuracy
