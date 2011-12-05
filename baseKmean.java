@@ -3,7 +3,7 @@ import java.io.*;
 public class baseKmean{
 
 	public static final double PERCENT_OF_TRAIN = 0.01;
-	public static final int NUM_OF_K = 5;//number of activities
+	public static final int NUM_OF_K = 4;//number of activities
 	public static final int NUM_OF_FEATURES = 7;
 	public static final double SIMILARITY_THRESHOLD = 0.1;
 	public static  int NUM_OF_Q  =  0;
@@ -119,17 +119,17 @@ public class baseKmean{
 			counter++;
 		}
 		if(type == 0){//not random//
-			System.out.println("accuracy: "+ a+"  " +(double) correct/counter);		
+			System.out.println( a+"  " +(double) correct/counter);		
 		}else{
-			System.out.println("random accuracy: "+ a+"  " +(double) correct/counter);	
+			System.out.println(a+"  " +(double) correct/counter);	
 		}
-		test.close();
 		
+		test.close();
+	   	
 	}
 
 	public static void main(String args[])throws Exception{
 
-		
 
 		FileInputStream fstream = new FileInputStream("train");
 		DataInputStream in = new DataInputStream(fstream);
@@ -205,8 +205,7 @@ public class baseKmean{
 					min_index = i;
 				}
 			}
-			
-			
+						
 			int g = (int)(trainSet[min_index][NUM_OF_FEATURES]);
 			double n = init_num[g];
 			for(int i = 0; i < NUM_OF_FEATURES;i++){
@@ -215,7 +214,6 @@ public class baseKmean{
 			init_num[g]++;
 			uncertainty[min_index] = Double.MAX_VALUE;
 
-			
 			
 			for(int i = 0 ; i < NUM_OF_TRAINSET; i++){
 				for (int j = 0; j < NUM_OF_K;j++){
